@@ -27,6 +27,6 @@ public interface EmployeService {
 	public List<Employe> getAllEmployees();
 	
 	public String addEmploye(EmployeBean emp);
-	
+	public String updateEmploye(EmployeBean emp);
 
 }

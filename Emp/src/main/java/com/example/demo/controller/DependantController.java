@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +12,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.bean.DependantsBean;
+import com.example.demo.bean.EmployeBean;
 import com.example.demo.entities.Dependants;
+import com.example.demo.entities.Employe;
 import com.example.demo.service.DependantService;
 import com.example.demo.service.EmployeService;
 
@@ -24,10 +29,11 @@ public class DependantController {
 	@Autowired
 	DependantService dependantService;
 	
-	@Autowired //tells the spring that, injection need to occur here, then spring searches for that EmployeService component and injects it here
+	@Autowired //tells the spring that, injection need to occur here, then spring searches for that StudentService component and injects it here
 	EmployeService employeService;
 	
-/*	@RequestMapping(value="/dependant/insert")//inserts new employe record into the table
+	
+/*	@RequestMapping(value="/dependant/insert")//inserts new dependantS record into the table
 	public Map<String,String> insertDependants(
 			@RequestParam("name") String name,
 			@RequestParam("age") Double age,
@@ -62,7 +68,7 @@ public class DependantController {
 		return message;
 	}
 	
-	@RequestMapping(value="/dependant/update") //Updates table
+	@RequestMapping(value="/dependant/update") //Updates dependantS table
 	public Map<String,String> updateDependants(@RequestParam("id") Integer id,@RequestParam("name") String name,@RequestParam("age") Double age,@RequestParam("relation") String relation ,@RequestParam("empid") Integer empid){
 		System.out.println("\nrunning update");
 		Map<String,String> message = new LinkedHashMap<>();
@@ -96,54 +102,7 @@ public class DependantController {
 		return message;
 	}
 	
-	@RequestMapping(value="/dependant/find/{id}")
-	public Map<String,String> findDependants(@PathVariable Integer id){
-		//@PathVariable takes the part of url as value her {id} taken as id value
-		Map<String,String> message = new LinkedHashMap<>(); // to store student details
-	Dependants foundDependants;
-		//this.studentService.find(id) returns Optional<> whose methods are isPresent and get()
-		if(this.dependantService.find(id).isPresent()) { // if the given student id is present
-			foundDependants = this.dependantService.find(id).get(); //fetches the student record from the database
-			//Getting student detail with help of getter methods
-			message.put("ID", foundDependants.getId().toString());
-			message.put("Name", foundDependants.getName());
-			message.put("Relation", foundDependants.getRelation());
-			message.put("Age",foundDependants.getAge().toString() );
-			message.put("Employee", foundDependants.getEmp_id().getName());
-		}
-		else { 
-			message.put("Error","Cannot find dependant with id "+id);
-		}
-		return message;
-	}
-	
-	@RequestMapping(value="/dependant/delete/{id}")//deletes record from student table for the given id
-	public Map<String,String> deleteDependants(@PathVariable("id") Integer id){
-		System.out.println("\nrunning delete");
-		Map<String,String> message = new LinkedHashMap<>();
-	Dependants oldDependant;
-		if(this.dependantService.find(id).isPresent()) {	
-			oldDependant = this.dependantService.find(id).get();
-			
-			message.put("ID", oldDependant.getId().toString());
-			message.put("Name", oldDependant.getName());
-			message.put("Age", oldDependant.getAge().toString());
-			
-			message.put("Employe", oldDependant.getEmp_id().getName());
-			
-			if(this.dependantService.deleteDependants(oldDependant)) 
-				message.put("Success", "Dependants successfully removed");
-			else {
-				message.clear();
-				message.put("Error", "Error cannot delete dependant");
-			}
-		}
-		else
-			message.put("Error", "Dependant id "+id+" is not found");
-		return message;
-	}
-*/
-	
+	*/
 	@GetMapping(value="/dependant/find/{id}")
 	public Map<String,String> findDependants(@PathVariable Integer id){
 		//@PathVariable takes the part of url as value her {id} taken as id value
@@ -156,7 +115,7 @@ public class DependantController {
 			message.put("ID", foundDependants.getId().toString());
 			message.put("Name", foundDependants.getName());
 			message.put("Relation", foundDependants.getRelation());
-			message.put("joiningdate",foundDependants.getjoiningdate().toString() );
+			message.put("Age",foundDependants.getAge().toString());
 			message.put("Employee", foundDependants.getEmp_id().getName());
 		}
 		else { 
@@ -175,7 +134,7 @@ public class DependantController {
 			
 			message.put("ID", oldDependant.getId().toString());
 			message.put("Name", oldDependant.getName());
-			message.put("joiningdate", oldDependant.getjoiningdate().toString());
+			message.put("Date", oldDependant.getAge().toString());
 			
 			message.put("Employe", oldDependant.getEmp_id().getName());
 			
@@ -205,7 +164,3 @@ public class DependantController {
 		return dependantService.updateDependants(dep);
 	}
 }
-	
-	
-	
-	

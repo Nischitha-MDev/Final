@@ -7,12 +7,31 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.example.demo.entities.AddressMaster;
+
 public class EmployeBean {
 	private Integer id;
 	private String name;
 	private Date joiningdate;
 	private DesignationBean designation;
 	private DepartmentBean department;
+	private AddressMaster addressmaster;
+	public EmployeBean(Integer id, String name, Date joiningdate, DesignationBean designation,
+			DepartmentBean department, AddressMaster addressmaster) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.joiningdate = joiningdate;
+		this.designation = designation;
+		this.department = department;
+		this.addressmaster = addressmaster;
+	}
+	public AddressMaster getAddressmaster() {
+		return addressmaster;
+	}
+	public void setAddressmaster(AddressMaster addressmaster) {
+		this.addressmaster = addressmaster;
+	}
 	public EmployeBean(Integer id, String name, Date joiningdate, DesignationBean designation,
 			DepartmentBean department) {
 		super();

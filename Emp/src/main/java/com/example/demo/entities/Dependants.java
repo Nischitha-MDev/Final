@@ -13,22 +13,22 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.example.demo.bean.DependantsBean;
-
-@Entity
-@Table(name="dependants")
+@Entity//mapped to database table
+@Table(name="dependants")//add the table name in the particular database
 public class Dependants implements Serializable{
 	
 private static final long serialVersionUID = 1L;
 	
 
-    @Id
+    @Id//primary key
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="id",unique = true,nullable = false)
 	private Integer id;
 
-    @ManyToOne(fetch=FetchType.LAZY)//Manytoone since many students belong to one department
-    @JoinColumn(name="empid",nullable = false)
+    
+  //Lazy--only fetch the related entities from the database when we use the relationship
+    @ManyToOne(fetch=FetchType.LAZY)//Manytoone since many employe belong to one employe
+    @JoinColumn(name="empid",nullable = false)//used to join the entity
 	private Employe emp_id;
 
     @Column(name="name",nullable = false)
@@ -37,8 +37,8 @@ private static final long serialVersionUID = 1L;
     @Column(name="relation",nullable = false)
 	private String relation;
 
-    @Column(name="joiningdate",nullable = false)
-	private Date joiningdate;
+    @Column(name="age",nullable = false)
+	private Integer age;
 	
 	
 	public Dependants() {
@@ -52,6 +52,8 @@ private static final long serialVersionUID = 1L;
 		this.id = id;
 	}
 	
+	
+
 	public Employe getEmp_id() {
 		return emp_id;
 	}
@@ -76,29 +78,27 @@ private static final long serialVersionUID = 1L;
 	}
 	
 	
-	public Date getjoiningdate() {
-		return joiningdate;
+	public Integer  getAge() {
+		return age;
 	}
-	public void setjoiningdate(Date joiningdate) {
-		this.joiningdate = joiningdate;
+	public void setAge(Integer age) {
+		this.age = age;
 	}
-	public Dependants(Integer id, Employe emp_id, String name, String relation, Double age) {
+	
+	public Dependants(String name, String relation, Integer  age) {
+		super();
+		this.name = name;
+		this.relation = relation;
+		this.age = age;
+	}
+	public Dependants(Integer id, Employe emp_id, String name, String relation, Integer age) {
 		super();
 		this.id = id;
 		this.emp_id = emp_id;
 		this.name = name;
 		this.relation = relation;
-		this.joiningdate = joiningdate;
+		this.age = age;
 	}
-	
-	public Dependants(String name, String relation, Date joiningdate) {
-		super();
-		this.name = name;
-		this.relation = relation;
-		this.joiningdate = joiningdate;
-	}
-	
 
 	
 }
-

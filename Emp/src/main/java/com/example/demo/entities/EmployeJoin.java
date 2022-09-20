@@ -11,7 +11,24 @@ public class EmployeJoin {
 	private Date joiningdate;
 	private String departmentName;
 	private String designation;
+	private String addressmaster;
 	
+	public EmployeJoin(Integer id, String name, Date joiningdate, String departmentName, String designation,
+			String addressmaster) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.joiningdate = joiningdate;
+		this.departmentName = departmentName;
+		this.designation = designation;
+		this.addressmaster = addressmaster;
+	}
+	public String getAddressmaster() {
+		return addressmaster;
+	}
+	public void setAddressmaster(String addressmaster) {
+		this.addressmaster = addressmaster;
+	}
 	public Integer getId() {
 		return id;
 	}

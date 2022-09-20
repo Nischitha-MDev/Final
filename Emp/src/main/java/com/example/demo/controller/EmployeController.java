@@ -114,7 +114,7 @@ public class EmployeController {
 
 		return message;
 	}
-
+*/
 	@RequestMapping(value="/employe/findall")// Lists all the student record in the student table
 	public List<Map<String,String>> findAllEmploye(){
 		Map<String,String> message ;
@@ -127,9 +127,11 @@ public class EmployeController {
 				message = new LinkedHashMap<>(); // to store invidual's info
 				message.put("ID", foundEmploye.getId().toString());
 				message.put("Name", foundEmploye.getName());
-				message.put("Age", foundEmploye.getAge().toString());
+				message.put("JOININGDATE", foundEmploye.getjoiningdate().toString());
 				message.put("Department", foundEmploye.getDepartment().getName());
 				message.put("Designation", foundEmploye.getDesignation().getName());
+				message.put("CURRENTADDRESS", foundEmploye.getAddressmaster().getCurrentaddress());
+				message.put("PERMANENTADDRESS", foundEmploye.getAddressmaster().getPermanentaddress());
 				listOfMessages.add(message); // list of individual's info
 			}
 		}
@@ -154,8 +156,11 @@ public class EmployeController {
 			//Getting student detail with help of getter methods
 			message.put("ID", foundEmploye.getId().toString());
 			message.put("Name", foundEmploye.getName());
-			message.put("Age", foundEmploye.getAge().toString());
+			message.put("JOININGDATE", foundEmploye.getjoiningdate().toString());
 			message.put("Department", foundEmploye.getDepartment().getName());
+			message.put("DESIGNATION",foundEmploye.getDesignation().getName());
+			message.put("CURRENTADDRESS", foundEmploye.getAddressmaster().getCurrentaddress());
+			message.put("PERMANENTADDRESS", foundEmploye.getAddressmaster().getPermanentaddress());
 		}
 		else { 
 			message.put("Error","Cannot find employe with id "+id);
@@ -173,9 +178,11 @@ public class EmployeController {
 
 			message.put("ID", oldEmploye.getId().toString());
 			message.put("Name", oldEmploye.getName());
-			message.put("Age", oldEmploye.getAge().toString());
+			message.put("Age", oldEmploye.getjoiningdate().toString());
 			message.put("Department", oldEmploye.getDepartment().getName());
 			message.put("Designation", oldEmploye.getDesignation().getName());
+			message.put("CURRENTADDRESS", oldEmploye.getAddressmaster().getCurrentaddress());
+			message.put("PERMANENTADDRESS", oldEmploye.getAddressmaster().getPermanentaddress());
 
 			if(this.employeService.deleteEmploye(oldEmploye)) 
 				message.put("Success", "Employe successfully removed");
@@ -189,12 +196,19 @@ public class EmployeController {
 		return message;
 	}
 
-*/
+
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,value = "/employe/add")
 	public String insertEmploye(@RequestBody EmployeBean emp)
 	{
 		return employeService.addEmploye(emp);
 	}
+	
+	@PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE,value = "/employe/update")
+	public String updateEmploye(@RequestBody EmployeBean emp)
+	{
+		return employeService.updateEmploye(emp);
+	}
+	
 	
 	
 }

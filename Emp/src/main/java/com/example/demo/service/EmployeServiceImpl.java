@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.bean.EmployeBean;
+import com.example.demo.entities.AddressMaster;
 import com.example.demo.entities.Department;
 import com.example.demo.entities.Designation;
 import com.example.demo.entities.Employe;
@@ -63,12 +64,35 @@ public class EmployeServiceImpl implements EmployeService {
 		Employe master = new Employe();
 		Department department = new Department();
 		Designation designation = new Designation();
+		AddressMaster address = new AddressMaster();
 		department.setId(emp.getDepartment().getId());
 		designation.setId(emp.getDesignation().getId());
+		address.setId(emp.getAddressmaster().getId());
 		//master.setId(emp.getId());
 		master.setAge(emp.getJoiningdate());
 		master.setDepartment(department);
 		master.setDesignation(designation);
+		master.setAddressmaster(address);
+		master.setName(emp.getName());
+		employeeRepository.save(master);
+		
+		return "employee created successsfully";
+	}
+	
+	@Override
+	public String updateEmploye(EmployeBean emp) {
+		Employe master = new Employe();
+		Department department = new Department();
+		Designation designation = new Designation();
+		AddressMaster address = new AddressMaster();
+		department.setId(emp.getDepartment().getId());
+		designation.setId(emp.getDesignation().getId());
+		address.setId(emp.getAddressmaster().getId());
+		master.setId(emp.getId());
+		master.setAge(emp.getJoiningdate());
+		master.setDepartment(department);
+		master.setDesignation(designation);
+		master.setAddressmaster(address);
 		master.setName(emp.getName());
 		employeeRepository.save(master);
 		

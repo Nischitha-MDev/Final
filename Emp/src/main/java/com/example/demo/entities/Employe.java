@@ -39,7 +39,30 @@ public class Employe {
 	@JoinColumn(name="desid",nullable = false)
 	private Designation designation;
 	
+	@ManyToOne(fetch=FetchType.LAZY)//Manytoone since many students belong to one department
+	@JoinColumn(name="addressmaster",nullable = false)
+	private AddressMaster addressmaster;
 	
+	
+public Employe(Integer id, String name, Date joiningdate, Department department, Designation designation,
+			AddressMaster addressmaster) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.joiningdate = joiningdate;
+		this.department = department;
+		this.designation = designation;
+		this.addressmaster = addressmaster;
+	}
+
+public AddressMaster getAddressmaster() {
+		return addressmaster;
+	}
+
+	public void setAddressmaster(AddressMaster addressmaster) {
+		this.addressmaster = addressmaster;
+	}
+
 public Employe() {}
 	
 	public Employe(String name,Date joiningdate) {

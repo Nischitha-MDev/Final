@@ -11,7 +11,7 @@ import com.example.demo.entities.Employe;
 public interface DependantService {
 	public Optional<Dependants> find(Integer id);
 	public Dependants insertDependants(Dependants dependant);
-	public Dependants updateDependants(Dependants dependant);
+	public String updateDependants(DependantsBean dependant);
 	public boolean deleteDependants(Dependants dependant);
 	
 	public String addDependant(DependantsBean dep);
