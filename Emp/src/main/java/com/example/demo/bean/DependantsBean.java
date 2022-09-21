@@ -2,7 +2,7 @@ package com.example.demo.bean;
 
 public class DependantsBean {
 	private int id;
-	private double age;
+	private Integer age;
 	private String relation;
 	private String name;
 	private EmployeBean emp_id;
@@ -12,10 +12,10 @@ public class DependantsBean {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public double getAge() {
+	public Integer getAge() {
 		return age;
 	}
-	public void setAge(double age) {
+	public void setAge(Integer age) {
 		this.age = age;
 	}
 	public String getRelation() {

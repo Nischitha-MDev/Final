@@ -37,7 +37,14 @@ public class DependantServiceImpl implements DependantService {
 		return dependantRepository.save(dependant);   // to store the data
 	}
 
-	
+	public Dependants updateDependants(Dependants dependant) 
+	{
+		Dependants depend= dependantRepository.findById(dependant.getId()).get();
+		depend.setName(dependant.getName());
+		
+		
+		return dependantRepository.save(depend);
+	}
 	
 	
 	@Override
@@ -45,8 +52,6 @@ public class DependantServiceImpl implements DependantService {
 		this.dependantRepository.delete(dependant);
 		return true;
 	}
-
-
 	@Override
 	public String addDependant(DependantsBean dep) {
 		Dependants master=new Dependants();
@@ -60,7 +65,7 @@ public class DependantServiceImpl implements DependantService {
 		return "dependant added succesfully";
 	}
 	
-	public String updateDependants(DependantsBean dep) {
+	public String updateDependant(DependantsBean dep) {
 		Dependants master=new Dependants();
 		Employe emp=new Employe();
 		emp.setId(dep.getEmpid().getId());
@@ -73,5 +78,22 @@ public class DependantServiceImpl implements DependantService {
 		return "dependant updated succesfully";
 	}
 
+	@Override
+	public String updateDependants(DependantsBean dependant) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }
+
+
+	

@@ -64,7 +64,6 @@ public class EmployeController {
 			newEmploye.setDepartment(this.departmentService.find(deptid).get());
 			newEmploye.setDesignation(this.designationService.find(desid).get());
 			System.out.println(newEmploye);
-
 			if(this.employeService.insertEmploye(newEmploye)!=null) {
 				message.put("Success", "New employe successfully added!");
 				message.put("ID",newEmploye.getId().toString());
@@ -81,8 +80,6 @@ public class EmployeController {
 		}
 		return message;
 	}
-
-
 	@RequestMapping(value="/Employe/update") //Updates student table
 	public Map<String,String> updateEmploye(@RequestParam("id") Integer id,@RequestParam("name") String name,@RequestParam("age") Double age,@RequestParam("deptid") Integer deptid ,@RequestParam("desid") Integer desid){
 		System.out.println("\nrunning update");
@@ -95,7 +92,6 @@ public class EmployeController {
 				newEmploye.setAge(age);
 				newEmploye.setDepartment(this.departmentService.find(deptid).get());
 				newEmploye.setDesignation(this.designationService.find(desid).get());
-
 				if(this.employeService.updateEmploye(newEmploye)!=null) {
 					message.put("Success", "Employe details successfully updated");
 					message.put("ID",newEmploye.getId().toString());
@@ -111,7 +107,6 @@ public class EmployeController {
 		}
 		else
 			message.put("Error", "Employe id "+id+" is not found");
-
 		return message;
 	}
 */
